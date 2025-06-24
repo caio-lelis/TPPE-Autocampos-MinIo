@@ -1,24 +1,16 @@
-version: "3.8"
+version: "3.9"
 
 services:
   minio:
-    image: minio/minio:latest
-    container_name: minio
+    image: minio/minio:RELEASE.2020-03-19T21-49-00Z
     ports:
       - "9000:9000"
       - "9001:9001"
-    volumes:
-      - minio_data:/data
     environment:
-      MINIO_ROOT_USER: minioadmin
-      MINIO_ROOT_PASSWORD: minioadmin123
-    command: server --console-address ":9001" /data
-    networks:
-      - microservicos-net
-
-volumes:
-  minio_data:
-
-networks:
-  microservicos-net:
-    external: true
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+    volumes:
+      - type: bind
+        source: ./data
+        target: /data
+    command: server /data
