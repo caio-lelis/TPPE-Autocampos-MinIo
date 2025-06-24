@@ -1,0 +1,1 @@
+docker network create microservicos-net->a545df817c6bafe2d8ccaa5df11df5585495a80032f45d95964dfc33c4a71060
