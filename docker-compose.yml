@@ -7,10 +7,16 @@ services:
       - "9000:9000"
       - "9001:9001"
     environment:
-      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
-      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY2}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY2}
     volumes:
       - type: bind
         source: ./data
         target: /data
     command: server /data
+    networks:
+      - microservicos-net
+
+networks:
+  microservicos-net:
+    external: true
